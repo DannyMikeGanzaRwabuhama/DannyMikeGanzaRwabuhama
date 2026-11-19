@@ -1,0 +1,100 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 700" width="920" height="700" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif">
+  <title>Settlement Radar architecture</title>
+  <defs>
+    <marker id="g" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#047857"/>
+    </marker>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#b45309"/>
+    </marker>
+  </defs>
+
+  <rect width="920" height="700" fill="#ffffff"/>
+
+  <text x="30" y="34" font-size="20" font-weight="700" fill="#0f172a">Settlement Radar: architecture</text>
+  <text x="30" y="54" font-size="12.5" fill="#475569">The database does the thinking. The web page only draws. The Java service only moves a file in.</text>
+
+  <!-- Row 1: inputs -->
+  <rect x="60" y="76" width="180" height="52" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
+  <text x="150" y="99" font-size="13" font-weight="600" fill="#0f172a" text-anchor="middle">Daily log</text>
+  <text x="150" y="116" font-size="11.5" fill="#475569" text-anchor="middle">Excel (.xlsx)</text>
+
+  <rect x="340" y="76" width="220" height="52" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
+  <text x="450" y="99" font-size="13" font-weight="600" fill="#0f172a" text-anchor="middle">Browser</text>
+  <text x="450" y="116" font-size="11.5" fill="#475569" text-anchor="middle">Dashboard, 4 reports, print to PDF</text>
+
+  <rect x="700" y="76" width="160" height="52" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
+  <text x="780" y="99" font-size="13" font-weight="600" fill="#0f172a" text-anchor="middle">CSV log</text>
+  <text x="780" y="116" font-size="11.5" fill="#475569" text-anchor="middle">Command-line loader</text>
+
+  <line x1="240" y1="102" x2="338" y2="102" stroke="#b45309" stroke-width="2" marker-end="url(#a)"/>
+  <text x="289" y="94" font-size="11" fill="#b45309" text-anchor="middle">Upload Excel</text>
+
+  <!-- Browser to frontend -->
+  <line x1="450" y1="128" x2="450" y2="166" stroke="#475569" stroke-width="2" marker-end="url(#g)"/>
+
+  <!-- Row 2: frontend -->
+  <rect x="290" y="168" width="320" height="58" rx="8" fill="#ecfdf5" stroke="#10b981" stroke-width="1.5"/>
+  <text x="450" y="193" font-size="13" font-weight="700" fill="#064e3b" text-anchor="middle">Frontend: nginx + React (port 3001)</text>
+  <text x="450" y="212" font-size="11.5" fill="#065f46" text-anchor="middle">One address for the browser, forwards two kinds of calls</text>
+
+  <!-- Frontend to services -->
+  <line x1="400" y1="226" x2="260" y2="290" stroke="#047857" stroke-width="2" marker-end="url(#g)"/>
+  <text x="318" y="256" font-size="11" fill="#047857" text-anchor="end">/db/*</text>
+  <line x1="500" y1="226" x2="610" y2="290" stroke="#b45309" stroke-width="2" marker-end="url(#a)"/>
+  <text x="572" y="256" font-size="11" fill="#b45309">/api/v1/settlement/*</text>
+
+  <!-- Row 3: PostgREST and Spring Boot -->
+  <rect x="120" y="292" width="280" height="70" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
+  <text x="260" y="320" font-size="13" font-weight="600" fill="#0f172a" text-anchor="middle">PostgREST</text>
+  <text x="260" y="340" font-size="11.5" fill="#475569" text-anchor="middle">Reads, reports, CSV exports</text>
+
+  <rect x="480" y="292" width="260" height="70" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
+  <text x="610" y="320" font-size="13" font-weight="600" fill="#0f172a" text-anchor="middle">Spring Boot</text>
+  <text x="610" y="340" font-size="11.5" fill="#475569" text-anchor="middle">Excel upload only: cells copied as text</text>
+
+  <!-- To database -->
+
+  <!-- Row 4: database -->
+  <rect x="40" y="416" width="840" height="266" rx="12" fill="#f0fdf4" stroke="#10b981" stroke-width="2"/>
+  <text x="350" y="443" font-size="15" font-weight="700" fill="#064e3b">PostgreSQL 16</text>
+  <text x="350" y="461" font-size="11.5" fill="#065f46">Every rule, threshold and sentence lives here</text>
+
+  <!-- A: reports -->
+  <rect x="60" y="480" width="240" height="180" rx="8" fill="#ffffff" stroke="#10b981"/>
+  <text x="76" y="508" font-size="13" font-weight="700" fill="#0f172a">3. Reports and API</text>
+  <text x="76" y="536" font-size="12" fill="#334155">rpt.*: one function per block</text>
+  <text x="76" y="556" font-size="12" fill="#334155">api.*: the only schema the web</text>
+  <text x="76" y="576" font-size="12" fill="#334155">can call; no table access</text>
+  <text x="76" y="604" font-size="12" fill="#334155">Dashboard, short version,</text>
+  <text x="76" y="624" font-size="12" fill="#334155">4 printable reports, CSV exports</text>
+
+  <!-- B: ledger -->
+  <rect x="350" y="480" width="220" height="180" rx="8" fill="#ffffff" stroke="#10b981"/>
+  <text x="366" y="508" font-size="13" font-weight="700" fill="#0f172a">2. Clean ledger and rules</text>
+  <text x="366" y="536" font-size="12" fill="#334155">ledger: typed, masked rows</text>
+  <text x="366" y="564" font-size="12" fill="#334155">v_ledger / v_failures decide:</text>
+  <text x="366" y="584" font-size="12" fill="#334155">failure type, whose side,</text>
+  <text x="366" y="604" font-size="12" fill="#334155">repeat, payment size band</text>
+  <text x="366" y="632" font-size="12" fill="#334155">app_config: all thresholds</text>
+
+  <!-- C: ingest -->
+  <rect x="620" y="480" width="240" height="180" rx="8" fill="#ffffff" stroke="#f59e0b"/>
+  <text x="636" y="508" font-size="13" font-weight="700" fill="#0f172a">1. Ingest (all or nothing)</text>
+  <text x="636" y="536" font-size="12" fill="#334155">Staging: stg_json / stg_ledger</text>
+  <text x="636" y="556" font-size="12" fill="#334155">Maps headers, reads dates</text>
+  <text x="636" y="576" font-size="12" fill="#334155">One bad row rejects the file</text>
+  <text x="636" y="596" font-size="12" fill="#334155">Masks payer + account (HMAC)</text>
+  <text x="636" y="616" font-size="12" fill="#334155">Damaged Excel ids stored as NULL</text>
+  <text x="636" y="644" font-size="12" fill="#334155">Re-loading a day replaces it</text>
+
+  <!-- Flow inside the database -->
+  <line x1="620" y1="585" x2="572" y2="585" stroke="#b45309" stroke-width="2" marker-end="url(#a)"/>
+  <line x1="350" y1="585" x2="302" y2="585" stroke="#047857" stroke-width="2" marker-end="url(#g)"/>
+
+  <!-- Arrows into the database (drawn last so heads stay visible) -->
+  <line x1="200" y1="362" x2="200" y2="478" stroke="#047857" stroke-width="2" marker-end="url(#g)"/>
+  <line x1="680" y1="362" x2="680" y2="478" stroke="#b45309" stroke-width="2" marker-end="url(#a)"/>
+  <line x1="820" y1="128" x2="820" y2="478" stroke="#b45309" stroke-width="2" marker-end="url(#a)"/>
+  <text x="828" y="250" font-size="11" fill="#b45309">load_csv.sh</text>
+</svg>

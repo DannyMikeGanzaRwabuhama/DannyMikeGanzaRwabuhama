@@ -8,7 +8,7 @@ Graduating software engineering student at **Rwanda Coding Academy (RCA)** focus
 
 ## Selected Work
 
-### Settlement Radar _(internship build · private)_
+### Settlement Radar *(internship build · private)*
 
 **Clearing transaction ingestion and failure diagnostics.** Built during a bank software internship to parse 100,000+ daily RWF clearing records from Excel/CSV, mask payer and account identifiers inside the database transaction via HMAC-SHA256, and surface failure patterns by channel and counterparty.
 
@@ -17,7 +17,7 @@ Graduating software engineering student at **Rwanda Coding Academy (RCA)** focus
 
 `Java` · `Spring Boot` · `PostgreSQL` · `TypeScript` · `React` · `Docker`
 
-### PandemicNet _(RCA Hackathon · 1st Place · team project)_
+### PandemicNet *(RCA Hackathon · 1st Place · team project)*
 
 **Contact tracing and outbreak modeling prototype.**
 
@@ -26,7 +26,7 @@ Graduating software engineering student at **Rwanda Coding Academy (RCA)** focus
 
 `Python` · `PostgreSQL` · `Next.js` · `TypeScript` · `Docker`
 
-### FaceLocking & FaceLockingServo _(RCA course projects)_
+### FaceLocking & FaceLockingServo *(RCA course projects)*
 
 **Computer vision and embedded systems coursework.** Explored CPU-based face detection and recognition (`OpenCV`, `MediaPipe`, `ArcFace` embeddings) in **FaceLocking**, and extended it in **FaceLockingServo** to publish pan/tilt tracking commands over `MQTT` to an `ESP8266` servo controller.
 
@@ -34,7 +34,7 @@ Repos: [FaceLocking](https://github.com/DannyMikeGanzaRwabuhama/FaceLocking) · 
 
 `Python` · `OpenCV` · `MQTT` · `C++ (Arduino/ESP8266)`
 
-### Echoes of Memory _(prototype · team project)_
+### Echoes of Memory *(prototype · team project)*
 
 **Offline-first memorial companion concept.** Designed for low-connectivity memorial sites in Rwanda, allowing visitors to scan local markers to access curated survivor testimonies while keeping sensitive content veiled until explicitly revealed. Validated with site stakeholders and built as a multi-client prototype (Flutter mobile client, Next.js CMS, and local sync architecture).
 
