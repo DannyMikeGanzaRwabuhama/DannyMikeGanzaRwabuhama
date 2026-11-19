@@ -1,59 +1,48 @@
 # Danny Mike Ganza Rwabuhama
 
-I build software for the person standing inside the problem, from preserving survivor testimony at Rwanda's memorials to investigating failed transactions across 100k+ daily banking records without exposing a single identity.
+Graduating software engineering student at **Rwanda Coding Academy (RCA)** focused on building reliable data pipelines and human-centered software systems.
 
-**Looking for:** data engineering apprenticeships and software internships. Based in Kigali, open to remote.
+**Looking for:** Data Engineering apprenticeships and Junior Software Engineering roles. Based in Kigali, open to remote.
 
 ---
 
-## What I've Built
+## Selected Work
 
-### Settlement Radar *(private · internship project)*
-**Failed-payment investigation for clearing operations.** Loads a day's transaction log (100,000+ rows) from Excel or CSV, masks payer and account numbers inside the database transaction, and classifies every failed payment by type (timeout or rejection) and by whose side failed (our switch, the other participant, our own bank). It flags repeat failures and problem hours, and reports how much money is stuck, in a dashboard and four printable reports.
+### Settlement Radar _(internship build · private)_
 
-All business rules live in PostgreSQL functions: the web page only draws, and the Java service only moves a file in. A single unreadable row rejects the whole file, so a half-loaded day can never happen.
+**Clearing transaction ingestion and failure diagnostics.** Built during a bank software internship to parse 100,000+ daily RWF clearing records from Excel/CSV, mask payer and account identifiers inside the database transaction via HMAC-SHA256, and surface failure patterns by channel and counterparty.
 
-`PostgreSQL (PL/pgSQL)` · `Spring Boot (Java)` · `React + TypeScript` · `PostgREST` · `nginx` · `Docker`
+- **Architecture:** Thin Spring Boot streaming uploader (`Apache POI StreamingReader`) handing normalized rows to PostgreSQL (`PL/pgSQL`) for validation, masking, and reporting, paired with a React/TypeScript dashboard.
+- **What I focused on:** Designing an atomic ELT ingestion boundary so malformed files reject cleanly without partial-day corruption, and keeping raw PII off disk.
 
-<details>
-<summary>Architecture</summary>
+`Java` · `Spring Boot` · `PostgreSQL` · `TypeScript` · `React` · `Docker`
 
-![Settlement Radar architecture](assets/settlement-radar-architecture.svg)
+### PandemicNet _(RCA Hackathon · 1st Place · team project)_
 
-</details>
+**Contact tracing and outbreak modeling prototype.**
 
-### PandemicNet *(team project)*
-**Contact tracing and outbreak simulation for public health officers.** It started as a low-tech contact tracer and grew into a full platform.
+- [**pandemicNet**](https://github.com/DannyMikeGanzaRwabuhama/pandemicNet): Hackathon-winning prototype built with Flask, PostgreSQL, and Streamlit to trace exposure paths and estimate contact risk.
+- [**pandemicnet-ai**](https://github.com/DannyMikeGanzaRwabuhama/pandemicnet-ai): Architectural exploration modeling multi-degree exposure graphs in Neo4j alongside a Next.js dashboard and agent-based outbreak simulation.
 
-- 🏆 [**pandemicNet**](https://github.com/DannyMikeGanzaRwabuhama/pandemicNet) won **1st Place at the RCA Annual Hackathon**. Flask + PostgreSQL contact tracing with a network graph, ML contact prediction and a Streamlit interface.
-- [**pandemicnet-ai**](https://github.com/DannyMikeGanzaRwabuhama/pandemicnet-ai) is the larger rebuild. Neo4j holds the contact graph (multi-degree tracing, centrality, communities, superspreaders), a Random Forest scores transmission risk, and Gemini explains the results in plain language. A Next.js 15 dashboard shows a D3 network graph and a Leaflet map, and a LangGraph simulation runs six agents: movement, contact, infection, outbreak detection (reproduction number), intervention and daily report.
+`Python` · `PostgreSQL` · `Next.js` · `TypeScript` · `Docker`
 
-`Python` · `FastAPI` · `Neo4j` · `scikit-learn` · `LangGraph` · `Gemini API` · `Next.js` · `TypeScript` · `D3.js` · `Flask` · `PostgreSQL` · `Streamlit` · `Docker`
+### FaceLocking & FaceLockingServo _(RCA course projects)_
 
-### FaceLocking & FaceLockingServo *(course projects)*
-**Face recognition that locks onto one person, then acts on it.** FaceLocking recognizes enrolled people on an ordinary CPU (ArcFace embeddings, Haar detection, MediaPipe 5-point alignment) and tunes its acceptance threshold from false-accept and false-reject analysis. Once locked onto one identity it ignores everyone else and logs their blinks, smiles and movement.
-
-FaceLockingServo turns that into a distributed system: the vision node publishes left, right or centered commands over MQTT, ESP8266 firmware subscribes and moves a servo, and a WebSocket dashboard shows the command stream. Phase 1 is open-loop (commands only, no servo feedback).
+**Computer vision and embedded systems coursework.** Explored CPU-based face detection and recognition (`OpenCV`, `MediaPipe`, `ArcFace` embeddings) in **FaceLocking**, and extended it in **FaceLockingServo** to publish pan/tilt tracking commands over `MQTT` to an `ESP8266` servo controller.
 
 Repos: [FaceLocking](https://github.com/DannyMikeGanzaRwabuhama/FaceLocking) · [FaceLockingServo](https://github.com/DannyMikeGanzaRwabuhama/FaceLockingServo)
 
-`Python` · `OpenCV` · `MediaPipe` · `ArcFace (ONNX)` · `MQTT` · `WebSocket` · `C++ (ESP8266)`
+`Python` · `OpenCV` · `MQTT` · `C++ (Arduino/ESP8266)`
 
-### Echoes of Memory *(private · team project)*
-For younger generations and international visitors at Rwanda's genocide memorials, where a guide cannot stand beside every visitor in every language, and for the custodians who preserve these testimonies so they are never lost.
+### Echoes of Memory _(prototype · team project)_
 
-A trauma-informed, offline-first AR companion. Visitors scan ArUco markers to open survivor testimony, and sensitive content stays veiled until they choose to reveal it. Curators manage content in a web CMS, which pushes updates (SHA-256 checked, swapped in atomically) to a Raspberry Pi edge server at the site, so the app works with no internet.
+**Offline-first memorial companion concept.** Designed for low-connectivity memorial sites in Rwanda, allowing visitors to scan local markers to access curated survivor testimonies while keeping sensitive content veiled until explicitly revealed. Validated with site stakeholders and built as a multi-client prototype (Flutter mobile client, Next.js CMS, and local sync architecture).
 
-Three parts: a Flutter app, a Next.js CMS and a Node.js edge server.
-
-`Flutter (Dart)` · `OpenCV (ArUco)` · `Isar` · `Next.js` · `PostgreSQL` · `Node.js`
+`Flutter (Dart)` · `Next.js` · `PostgreSQL`
 
 ---
 
-## Tech
+## Core Working Stack
 
-**Languages:** `Python` · `Java` · `SQL (PL/pgSQL)` · `TypeScript` · `Dart` · `C++` · `JavaScript`
-**Backend and data:** `Spring Boot` · `FastAPI` · `Flask` · `Node.js` · `PostgreSQL` · `Neo4j` · `PostgREST`
-**Frontend and mobile:** `React` · `Next.js` · `D3.js` · `Flutter` · `Streamlit`
-**ML, AI and vision:** `scikit-learn` · `NetworkX` · `LangGraph` · `Gemini API` · `OpenCV` · `MediaPipe`
-**Infrastructure and IoT:** `Docker` · `nginx` · `MQTT` · `ESP8266`
+- **Primary (read, debug & build daily):** `Java (Spring Boot)` · `TypeScript / Next.js` · `PostgreSQL / SQL`
+- **Coursework & Prototyping:** `Python` · `C++ (Embedded)` · `Dart (Flutter)` · `Docker` · `Git`
